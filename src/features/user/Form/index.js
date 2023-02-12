@@ -1,15 +1,10 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { useUpdateFields } from "../hooks";
-import {
-  PENDING,
-  INPROGRESS,
-  REQUESTING,
-  SUCCESS,
-  ERROR,
-} from "../../../utilities/helpers";
+
 import Button from "../../../components/Button";
+import Title from "../../../components/Title";
+
 import formStyles from "./styles";
 
 const Form = ({ handleSubmit, status, animalID, title }) => {
@@ -31,8 +26,8 @@ const Form = ({ handleSubmit, status, animalID, title }) => {
 
         <TextInput
           key={"common_name"}
-          placeholder={common_name || "Common Name"}
-          value={common_name || ""}
+          placeholder={"Common Name"}
+          value={""}
           style={{
             borderWidth: 1,
             borderColor: "black",
@@ -46,8 +41,8 @@ const Form = ({ handleSubmit, status, animalID, title }) => {
 
         <TextInput
           key={"scientific_name"}
-          placeholder={scientific_name || "Scientific Name"}
-          value={scientific_name || ""}
+          placeholder={"Scientific Name"}
+          value={""}
           style={{
             borderWidth: 1,
             borderColor: "black",

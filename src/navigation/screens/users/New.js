@@ -1,14 +1,14 @@
 import React from "react";
 import { ScrollView, SafeAreaView } from "react-native";
-import Regions from "../../../features/regions";
+import New from "../../../features/user/New";
 
 // top level display component only - declares a view that will be part of navigation
-const RegionsList = () => (
+const NewUserScreen = () => (
   <SafeAreaView>
     <ScrollView>
-      <Regions />
+      <New />
     </ScrollView>
   </SafeAreaView>
 );
 
-export default RegionsList;
+export default NewUserScreen;

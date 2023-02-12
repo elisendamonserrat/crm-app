@@ -6,9 +6,9 @@ const Edit = () => {
   return (
     <Form
       title={"Edit User's Profile"}
-      handleSubmit={onSubmit}
+      handleSubmit={null}
       status={null}
-      animalID={animalID}
+      animalID={null}
     />
   );
 };
