@@ -1,23 +1,23 @@
 export const initialUsers = [
   {
-    id: 1,
+    id: 'jlkjwdkje',
     name: "John",
     lastName: "Doe",
-    active: false,
+    active: "No",
     region_id: "34d1e800-aaa9-11ed-9017-1b0f7a30ae2f",
   },
   {
-    id: 2,
+    id: 'zzzzz',
     name: "Mae",
     lastName: "Black",
-    active: true,
+    active: "Yes",
     region_id: "34d1e801-aaa9-11ed-9017-1b0f7a30ae2f",
   },
   {
-    id: 3,
+    id: 'klmklñe',
     name: "Max",
     lastName: "Burton",
-    active: true,
+    active: "Yes",
     region_id: "34d1e803-aaa9-11ed-9017-1b0f7a30ae2f",
   },
 ];

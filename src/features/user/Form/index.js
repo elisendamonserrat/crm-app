@@ -1,26 +1,32 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SelectList } from "react-native-dropdown-select-list";
+import {
+  PENDING,
+  INPROGRESS,
+  REQUESTING,
+  SUCCESS,
+  ERROR,
+} from "../../../utilities/helpers";
 import Spacer from "../../../components/Spacer";
 import { View, TextInput } from "react-native";
 import Button from "../../../components/Button";
 import Title from "../../../components/Title";
 import formStyles from "./styles";
 import { regionsList } from "../../../utilities/data";
+import { useUpdateFields } from "../hooks";
 
 const Form = ({ handleSubmit, status, userID = null, title }) => {
   const styles = formStyles();
   const { navigate } = useNavigation();
-  const [selected, setSelected] = React.useState("");
+  const { fields, setFormField } = useUpdateFields(userID);
 
-  //   const { fields, setFormField } = useUpdateFields(animalID);
+  const { name, lastName, active, region_id } = fields;
 
-  //   const { common_name, scientific_name } = fields;
-
-  //   const onSubmit = () => {
-  //     handleSubmit();
-  //     navigate("Users");
-  //   };
+    const onSubmit = () => {
+      // handleSubmit();
+     navigate("Users By Region", { regionID: region_id });
+    };
 
   const regionsListFormatted = regionsList.map((region) => ({
     key: region.id,
@@ -31,6 +37,12 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
     { key: 1, value: "Yes" },
     { key: 2, value: "No" },
   ];
+  const isSelectedUserActive = userID
+    ? isUserActive.filter((user) => user.value === active)[0]
+    : {};
+  const regionSelectedUser = userID
+    ? regionsListFormatted.filter((user) => user.key === region_id)[0]
+    : {};
   return (
     <View style={styles.container}>
       <View style={styles.form}>
@@ -39,78 +51,61 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
 
         <TextInput
           key={"name"}
-          placeholder={"name"}
-          value={""}
+          placeholder={name || "name"}
+          value={name || "name"}
           style={{
             borderWidth: 1,
             borderColor: "black",
-            borderRadius: 4,
+            borderRadius: 10,
             padding: 15,
           }}
-          onChangeText={(v) => console.log("name", v)}
+          onChangeText={(v) => setFormField("name", v)}
         />
 
         <Spacer />
 
         <TextInput
-          key={"lastName"}
-          placeholder={"Last Name"}
-          value={""}
+          key={lastName || "lastName"}
+          placeholder={lastName || "lastName"}
+          value={lastName || "lastName"}
           style={{
             borderWidth: 1,
             borderColor: "black",
             borderRadius: 4,
             padding: 15,
           }}
-          onChangeText={(v) => console.log("lastName", v)}
+          onChangeText={(v) => setFormField("lastName", v)}
         />
 
         <Spacer />
 
         <SelectList
-          setSelected={(val) => console.log("val", val)}
+          setSelected={(v) => setFormField("region_id", v)}
           data={regionsListFormatted}
           save="key"
           placeholder="Select a Region"
-          // TO UPDATE THE DEFAULT KEY
-          defaultOption={
-            userID
-              ? {
-                  key: "34d1e800-aaa9-11ed-9017-1b0f7a30ae2f",
-                  value: "North East",
-                }
-              : {}
-          }
+          defaultOption={regionSelectedUser}
         />
 
         <Spacer />
 
         <SelectList
-          setSelected={(val) => console.log("val", val)}
+          setSelected={(v) => setFormField("active", v)}
           data={isUserActive}
           save="value"
           placeholder="Is user active?"
           // TO UPDATE THE DEFAULT KEY
-          defaultOption={
-            userID
-              ? {
-                  key: "1",
-                  value: true,
-                }
-              : {}
-          }
+          defaultOption={isSelectedUserActive}
           search={false}
         />
 
         <Spacer />
 
-        <Button text="Submit" />
-        {/* 
         <Button
           onPress={onSubmit}
           text="Submit"
           disabled={status !== PENDING && status !== INPROGRESS}
-        /> */}
+        />
       </View>
     </View>
   );

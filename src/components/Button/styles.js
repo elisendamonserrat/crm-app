@@ -16,7 +16,7 @@ const stylesFn = ({ disabled = false }) => {
     button: {
       width: 200,
       height: 30,
-      borderRadius: 3,
+      borderRadius: 10,
       margin: 10,
       backgroundColor: backgroundColor,
       justifyContent: "center",

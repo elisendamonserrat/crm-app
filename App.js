@@ -1,5 +1,15 @@
+import { Provider } from "react-redux";
+import initializeStore from "./src/store";
 import Navigation from "./src/navigation";
 
-export default function App() {
-  return <Navigation />;
-}
+const store = initializeStore();
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
+  );
+};
+
+export default App;

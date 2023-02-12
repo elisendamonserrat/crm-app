@@ -6,11 +6,13 @@ import Title from "../../../components/Title";
 import Button from "../../../components/Button";
 import { initialUsers, regionsList } from "../../../utilities/data";
 import Row from "./row";
+import { useListUsers } from "../hooks";
 
 const List = () => {
   const { navigate } = useNavigation();
   const { params } = useRoute();
   const { regionID } = params;
+  const usersList = useListUsers()
 
   const [usersByRegion, setUsersByRegion] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -19,7 +21,7 @@ const List = () => {
   // Loop through the list
   useEffect(() => {
     setUsersByRegion(() =>
-      initialUsers.filter((user) => regionID === user.region_id)
+      usersList.filter((user) => regionID === user.region_id)
     );
     setSelectedRegion(
       () => regionsList.filter((region) => region.id === regionID)[0]
