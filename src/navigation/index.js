@@ -15,7 +15,7 @@ const Navigation = () => {
       <Stack.Navigator initialRouteName={"Welcome"}>
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Regions" component={ListRegionsScreen} />
-        <Stack.Screen name="Users" component={ListUsersScreen} />
+        <Stack.Screen name="Users By Region" component={ListUsersScreen} />
         <Stack.Screen name="Add User" component={AddUserScreen} />
         <Stack.Screen name="Edit User" component={EditUserScreen} />
       </Stack.Navigator>
