@@ -1,6 +1,6 @@
 import React from "react";
 import { useRoute } from "@react-navigation/native";
-import Form from "../Form";
+import Form from "../Form/index";
 import { useEditUser } from "../hooks";
 
 const Edit = () => {

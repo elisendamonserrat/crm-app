@@ -1,11 +1,11 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import WelcomeScreen from "./screens/Welcome";
-import AddUserScreen from "./screens/users/New";
-import EditUserScreen from "./screens/users/Edit";
-import ListUsersScreen from "./screens/users/List";
-import ListRegionsScreen from "./screens/regions";
+import WelcomeScreen from "./screens/welcome/index.js";
+import AddUserScreen from "./screens/users/New.js";
+import EditUserScreen from "./screens/users/Edit.js";
+import ListUsersScreen from "./screens/users/List.js";
+import ListRegionsScreen from "./screens/regions/index.js";
 
 const Stack = createNativeStackNavigator();
 

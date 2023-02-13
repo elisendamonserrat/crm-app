@@ -3,7 +3,7 @@ const welcomeStyles = () => {
     container: {
       backgroundColor: "#fff",
       alignItems: "center",
-      height: "100vh",
+      flex: 1,
       padding: 20,
       justifyContent: "center",
     },

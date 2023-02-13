@@ -14,7 +14,7 @@ const stylesFn = ({ disabled = false }) => {
 
   return StyleSheet.create({
     button: {
-      width: "70vw",
+      width: "70%",
       borderRadius: 10,
       margin: 10,
       padding: 10,
@@ -26,7 +26,7 @@ const stylesFn = ({ disabled = false }) => {
     },
     text: {
       color: color,
-      fontWeight: 600,
+      fontWeight: "600",
       fontSize: 18,
     },
   });

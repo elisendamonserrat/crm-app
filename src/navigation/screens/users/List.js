@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, SafeAreaView, StyleSheet } from "react-native";
-import List from "../../../features/user/List";
+import List from "../../../features/user/List/index";
 import usersStyles from "./styles";
 
 const ListUsersScreen = () => {
@@ -8,9 +8,7 @@ const ListUsersScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
         <List />
-      </ScrollView>
     </SafeAreaView>
   );
 };

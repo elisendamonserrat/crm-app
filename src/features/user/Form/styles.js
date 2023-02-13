@@ -4,7 +4,7 @@ const styles = () => {
       margin: "5%",
     },
     form: {
-      height: "100vh",
+      flex: 1,
       width: "100%",
     },
   };

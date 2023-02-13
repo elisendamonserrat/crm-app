@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, SafeAreaView, ScrollView, Text, View } from "react-native";
-import Button from "../../../components/Button";
-import Spacer from "../../../components/Spacer";
-import Title from "../../../components/Title";
+import Button from "../../../components/Button/index";
+import Spacer from "../../../components/Spacer/index";
+import Title from "../../../components/Title/index";
 import welcomeStyles from "./styles";
 
 export default function Welcome() {
@@ -10,7 +10,7 @@ export default function Welcome() {
   const { navigate } = useNavigation();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <View style={styles.container}>
           <Spacer />

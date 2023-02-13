@@ -8,10 +8,10 @@ import {
   SUCCESS,
   ERROR,
 } from "../../../utilities/helpers";
-import Spacer from "../../../components/Spacer";
+import Spacer from "../../../components/Spacer/index";
 import { View, TextInput, Text } from "react-native";
-import Button from "../../../components/Button";
-import Title from "../../../components/Title";
+import Button from "../../../components/Button/index";
+import Title from "../../../components/Title/index";
 import formStyles from "./styles";
 import { regionsList } from "../../../utilities/data";
 import { useUpdateFields, useErrorMessages } from "../hooks";

@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-import Title from "../../../components/Title";
-import Button from "../../../components/Button";
+import Title from "../../../components/Title/index";
+import Button from "../../../components/Button/index";
 import { regionsList } from "../../../utilities/data";
 import Row from "./row";
 import { useListUsers, useListUsersStatus, useErrorMessages } from "../hooks";
-import Spacer from "../../../components/Spacer";
+import Spacer from "../../../components/Spacer/index";
 import { PENDING, SUCCESS } from "../../../utilities/helpers";
-import Loading from "../../../components/Loading";
+import Loading from "../../../components/Loading/index";
 
 const List = () => {
   const { navigate } = useNavigation();

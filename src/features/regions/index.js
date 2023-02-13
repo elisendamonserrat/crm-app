@@ -2,11 +2,11 @@ import React from "react";
 import { View, Text, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import Title from "../../components/Title";
-import Button from "../../components/Button";
+import Title from "../../components/Title/index";
+import Button from "../../components/Button/index";
 import { regionsList } from "../../utilities/data";
 import Row from "./row";
-import Spacer from "../../components/Spacer";
+import Spacer from "../../components/Spacer/index";
 
 const List = () => {
   // Select store state that holds the regions list

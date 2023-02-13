@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Keyboard, TextInput, View, Button, Text } from "react-native";
+import React, { useEffect, } from "react";
+import { Keyboard, View, Button, Text } from "react-native";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 
