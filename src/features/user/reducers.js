@@ -40,8 +40,8 @@ const reducers = {
   },
   addNewUser: (state, { payload }) => {
     state.create.status = SUCCESS;
-    state.list.animals = payload;
-    // state.form.fields = initialState.form.fields;
+    state.list.users.push(payload);
+    state.form.fields = initialState.form.fields;
     state.create = initialState.create;
   },
   createUserError: (state, { payload }) => {
@@ -50,7 +50,7 @@ const reducers = {
     state.form.fields = initialState.form.fields;
   },
   setForm: (state, { payload }) => {
-      const user = state.list.users.find((a) => (a.id === payload));
+    const user = state.list.users.find((a) => a.id === payload);
 
     if (user) {
       state.form.fields = user;
@@ -60,7 +60,15 @@ const reducers = {
   },
   editUser: (state, { payload }) => {
     state.edit.status = SUCCESS;
-    state.list.users = payload;
+    const updateUserValues = state.form.fields;
+    const users = state.list.users.map((a) => {
+      if (a.id === payload) {
+        a = updateUserValues;
+      }
+      return a;
+    });
+
+    state.list.users = users;
     state.form.fields = initialState.form.fields;
     state.edit = initialState.edit;
   },
@@ -83,6 +91,9 @@ const reducers = {
 
     state.form.fields = fields;
   },
+  resetFields: (state) => {
+    state.form.fields = initialState.form.fields;
+  },
 };
 
 const slice = createSlice({
@@ -100,6 +111,7 @@ export const {
   editUserError,
   setForm,
   setFormField,
+  resetFields,
 } = slice.actions;
 
 export default slice.reducer;

@@ -6,6 +6,7 @@ const stylesFn = () => {
       fontSize: 25,
       fontWeight: "bold",
       alignSelf: "center",
+      textAlign: "center"
     },
   });
 };

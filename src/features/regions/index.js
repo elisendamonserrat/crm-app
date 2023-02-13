@@ -6,6 +6,7 @@ import Title from "../../components/Title";
 import Button from "../../components/Button";
 import { regionsList } from "../../utilities/data";
 import Row from "./row";
+import Spacer from "../../components/Spacer";
 
 const List = () => {
   // Select store state that holds the regions list
@@ -14,11 +15,13 @@ const List = () => {
 
   return (
     <View>
+      <Spacer />
+
       <Title text="Add a New User" />
 
       <Button
         text="Add a New User"
-        onPress={() => navigate('Add User')}
+        onPress={() => navigate("Add User")}
         disabled={false}
       />
 
@@ -32,6 +35,7 @@ const List = () => {
       />
 
       <Title text="Regions List" />
+      <Spacer />
 
       {regionsList && regionsList.length > 0 ? (
         <FlatList

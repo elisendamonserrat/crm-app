@@ -23,10 +23,8 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
 
   const { name, lastName, active, region_id } = fields;
 
-  console.log("form fields", fields);
-
   const onSubmit = () => {
-    // handleSubmit();
+    handleSubmit();
     navigate("Users By Region", { regionID: region_id });
   };
 
@@ -36,8 +34,8 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
   }));
 
   const isUserActive = [
-    { key: 1, value: "Yes" },
-    { key: 2, value: "No" },
+    { key: "Yes", value: "Yes" },
+    { key: "No", value: "No" },
   ];
   const isSelectedUserActive = userID
     ? isUserActive.filter((user) => user.value === active)[0]
@@ -57,9 +55,10 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
           value={name}
           style={{
             borderWidth: 1,
-            borderColor: "black",
+            borderColor: "rgb(128, 128, 128);",
             borderRadius: 10,
             padding: 15,
+            paddingLeft: 20,
           }}
           onChangeText={(v) => setFormField("name", v)}
         />
@@ -72,9 +71,10 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
           value={lastName}
           style={{
             borderWidth: 1,
-            borderColor: "black",
-            borderRadius: 4,
+            borderColor: "rgb(128, 128, 128);",
+            borderRadius: 10,
             padding: 15,
+            paddingLeft: 20,
           }}
           onChangeText={(v) => setFormField("lastName", v)}
         />
@@ -95,8 +95,7 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
 
         <SelectList
           setSelected={(value) => {
-            let active = value === 1 ? "Yes" : "No";
-            setFormField("active", active);
+            setFormField("active", value);
           }}
           data={isUserActive}
           save="value"

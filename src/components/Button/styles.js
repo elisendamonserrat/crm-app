@@ -15,12 +15,13 @@ const stylesFn = ({ disabled = false }) => {
   return StyleSheet.create({
     button: {
       width: 200,
-      height: 30,
       borderRadius: 10,
       margin: 10,
+      padding: 10,
       backgroundColor: backgroundColor,
       justifyContent: "center",
       alignItems: "center",
+      textTransform: "uppercase"
     },
     text: {
       color: color,

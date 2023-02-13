@@ -1,17 +1,20 @@
-import React from "react";
-// import { useNewAnimal, useCreateAnimalStatus } from "../hooks";
+import React, { useEffect } from "react";
+import { useNewUser, useResetFormFields } from "../hooks";
 import Form from "../Form";
 
 const New = () => {
-//   const { onSubmit } = useNewAnimal();
-//   const status = useCreateAnimalStatus();
+  const { onSubmit } = useNewUser();
+  const { resetFields } = useResetFormFields();
+  //   const status = useCreateAnimalStatus();
+
+  useEffect(() => resetFields(), []);
 
   return (
     <Form
-      handleSubmit={null}
+      handleSubmit={onSubmit}
       title={"Add a New User"}
       status={null}
-      animalID={null}
+      userID={null}
     />
   );
 };

@@ -11,7 +11,16 @@ const Row = ({ item }) => {
     >
       <View
         key={item.id}
-        style={{ borderWidth: 1, padding: 10, margin: 10, borderRadius: 10 }}
+        style={{
+          borderWidth: 1,
+          borderColor: "rgb(128, 128, 128);",
+          borderRadius: 10,
+          padding: 15,
+          paddingLeft: 20,
+          margin: 'auto',
+          marginBottom: 10,
+          width:"90%"
+        }}
       >
         <Text key={item.id}>{item.name}</Text>
       </View>
