@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import {
   PENDING,
   INPROGRESS,
@@ -23,10 +23,10 @@ const initialState = {
   },
   form: {
     fields: {
-      name: null,
-      lastName: null,
+      name: "",
+      lastName: "",
       active: false,
-      region_id: null,
+      region_id: "",
     },
   },
   error: {
@@ -50,7 +50,7 @@ const reducers = {
     state.form.fields = initialState.form.fields;
   },
   setForm: (state, { payload }) => {
-    const user = state.list.users.find((a) => (a.id = payload));
+      const user = state.list.users.find((a) => (a.id === payload));
 
     if (user) {
       state.form.fields = user;
@@ -60,7 +60,7 @@ const reducers = {
   },
   editUser: (state, { payload }) => {
     state.edit.status = SUCCESS;
-    state.list.animals = payload;
+    state.list.users = payload;
     state.form.fields = initialState.form.fields;
     state.edit = initialState.edit;
   },
@@ -74,9 +74,7 @@ const reducers = {
   },
   setFormField: (state, { payload }) => {
     const current = state.form.fields;
-      const { field, value } = payload;
-      
-      console.log('current', current, payload)
+    const { field, value } = payload;
 
     const fields = {
       ...current,

@@ -23,10 +23,12 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
 
   const { name, lastName, active, region_id } = fields;
 
-    const onSubmit = () => {
-      // handleSubmit();
-     navigate("Users By Region", { regionID: region_id });
-    };
+  console.log("form fields", fields);
+
+  const onSubmit = () => {
+    // handleSubmit();
+    navigate("Users By Region", { regionID: region_id });
+  };
 
   const regionsListFormatted = regionsList.map((region) => ({
     key: region.id,
@@ -52,7 +54,7 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
         <TextInput
           key={"name"}
           placeholder={name || "name"}
-          value={name || "name"}
+          value={name}
           style={{
             borderWidth: 1,
             borderColor: "black",
@@ -65,9 +67,9 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
         <Spacer />
 
         <TextInput
-          key={lastName || "lastName"}
+          key={"lastName"}
           placeholder={lastName || "lastName"}
-          value={lastName || "lastName"}
+          value={lastName}
           style={{
             borderWidth: 1,
             borderColor: "black",
@@ -80,7 +82,9 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
         <Spacer />
 
         <SelectList
-          setSelected={(v) => setFormField("region_id", v)}
+          setSelected={(v) => {
+            setFormField("region_id", v);
+          }}
           data={regionsListFormatted}
           save="key"
           placeholder="Select a Region"
@@ -90,22 +94,20 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
         <Spacer />
 
         <SelectList
-          setSelected={(v) => setFormField("active", v)}
+          setSelected={(value) => {
+            let active = value === 1 ? "Yes" : "No";
+            setFormField("active", active);
+          }}
           data={isUserActive}
           save="value"
           placeholder="Is user active?"
-          // TO UPDATE THE DEFAULT KEY
           defaultOption={isSelectedUserActive}
           search={false}
         />
 
         <Spacer />
 
-        <Button
-          onPress={onSubmit}
-          text="Submit"
-          disabled={status !== PENDING && status !== INPROGRESS}
-        />
+        <Button onPress={onSubmit} text="Submit" />
       </View>
     </View>
   );

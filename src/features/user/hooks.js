@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PENDING, INPROGRESS } from "../../utilities/helpers";
 import * as actions from "./reducers";
@@ -14,29 +14,14 @@ export const useListUsersStatus = () => {
 export const useUpdateFields = (userID = null) => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.user.edit.status);
-    const users = useSelector((state) => state.user.list.users);
-    console.log('users', users)
-  const defaultFields = useSelector((state) => state.user.form.fields);
-
-  const fields = !userID
-    ? defaultFields
-    : users.filter((user) => user.id === userID)[0];
-
-  console.log("fields", fields);
-
-  if (userID)
-    console.log(
-      "user ID ::: ",
-      userID,
-      status,
-      userID && status !== INPROGRESS
-    );
-
-//   useEffect(() => {
-//     if (userID && status === PENDING) {
-//       dispatch(actions.setForm(userID));
-//     }
-//   }, [userID, status]);
+  let fields = useSelector((state) => state.user.form.fields);
+  
+  useEffect(() => {
+    if (userID) {
+      dispatch(actions.setForm(userID));
+    }
+    return () => (userID = null);
+  }, [userID]);
 
   return {
     fields,
