@@ -35,14 +35,16 @@ const initialState = {
 };
 
 const reducers = {
-  createUserStatus: (state) => {
+  createUser: (state) => {
     state.create.status = REQUESTING;
   },
-  addNewUser: (state, { payload }) => {
-    state.create.status = SUCCESS;
-    state.list.users.push(payload);
+  createUserResult: (state, { payload }) => {
+    state.list.users = payload;
     state.form.fields = initialState.form.fields;
-    state.create = initialState.create;
+    state.create.status = initialState.create;
+  },
+  createUserResultStatus: (state, { payload }) => {
+    state.list.status = payload;
   },
   createUserError: (state, { payload }) => {
     state.create.status = ERROR;
@@ -59,21 +61,19 @@ const reducers = {
     }
   },
   editUser: (state, { payload }) => {
+    state.edit.status = REQUESTING;
+    state.list.status = PENDING;
+  },
+  editUserResult: (state, { payload }) => {
     state.edit.status = SUCCESS;
-    const updateUserValues = state.form.fields;
-    const users = state.list.users.map((a) => {
-      if (a.id === payload) {
-        a = updateUserValues;
-      }
-      return a;
-    });
-
-    state.list.users = users;
+    state.list.status = SUCCESS;
+    state.list.users = payload;
     state.form.fields = initialState.form.fields;
     state.edit = initialState.edit;
   },
-  editUserError: (state) => {
+  editUserError: (state, { payload }) => {
     state.edit.status = ERROR;
+    state.list.status = ERROR;
     state.error.message = payload;
     state.form.fields = initialState.form.fields;
   },
@@ -94,6 +94,9 @@ const reducers = {
   resetFields: (state) => {
     state.form.fields = initialState.form.fields;
   },
+  errorMessage: (state, { payload }) => {
+    state.error.message = payload;
+  },
 };
 
 const slice = createSlice({
@@ -103,15 +106,18 @@ const slice = createSlice({
 });
 
 export const {
-  createUserStatus,
-  addNewUser,
+  createUser,
+  createUserResult,
+  createUserResultStatus,
   createUserError,
   editUserStatus,
   editUser,
+  editUserResult,
   editUserError,
   setForm,
   setFormField,
   resetFields,
+  errorMessage,
 } = slice.actions;
 
 export default slice.reducer;

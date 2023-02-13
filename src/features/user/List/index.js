@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
@@ -6,14 +6,24 @@ import Title from "../../../components/Title";
 import Button from "../../../components/Button";
 import { regionsList } from "../../../utilities/data";
 import Row from "./row";
-import { useListUsers } from "../hooks";
+import { useListUsers, useListUsersStatus, useErrorMessages } from "../hooks";
 import Spacer from "../../../components/Spacer";
+import { PENDING, SUCCESS } from "../../../utilities/helpers";
+import Loading from "../../../components/Loading";
 
 const List = () => {
   const { navigate } = useNavigation();
   const { params } = useRoute();
   const { regionID } = params;
   const usersList = useListUsers();
+  const { status, setStatus } = useListUsersStatus();
+  const { error, setError } = useErrorMessages();
+
+  useEffect(() => {
+    setTimeout(() => setStatus(SUCCESS), 500);
+
+    return () => setStatus(PENDING);
+  }, []);
 
   let usersByRegion = usersList.filter((user) => regionID === user.region_id);
   const selectedRegion = regionsList.filter(
@@ -25,7 +35,9 @@ const List = () => {
       <Spacer />
       <Title text={`Users List ${selectedRegion.name}`} />
       <Spacer />
-      {usersByRegion && usersByRegion.length > 0 ? (
+      {status === PENDING ? (
+        <Loading />
+      ) : usersByRegion && usersByRegion.length > 0 ? (
         <FlatList
           data={usersByRegion || []}
           renderItem={(props) => <Row {...props} />}
@@ -43,6 +55,7 @@ const List = () => {
           />
         </>
       )}
+      {error !== "" && <Text style={{ color: "red" }}>Error: {error}</Text>}
     </View>
   );
 };

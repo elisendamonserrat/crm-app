@@ -9,22 +9,27 @@ import {
   ERROR,
 } from "../../../utilities/helpers";
 import Spacer from "../../../components/Spacer";
-import { View, TextInput } from "react-native";
+import { View, TextInput, Text } from "react-native";
 import Button from "../../../components/Button";
 import Title from "../../../components/Title";
 import formStyles from "./styles";
 import { regionsList } from "../../../utilities/data";
-import { useUpdateFields } from "../hooks";
+import { useUpdateFields, useErrorMessages } from "../hooks";
 
 const Form = ({ handleSubmit, status, userID = null, title }) => {
   const styles = formStyles();
   const { navigate } = useNavigation();
   const { fields, setFormField } = useUpdateFields(userID);
+  const { error, setError } = useErrorMessages();
 
   const { name, lastName, active, region_id } = fields;
 
   const onSubmit = () => {
+    if (!name || !lastName || !active || !region_id)
+      return setError("Please, fill all inputs.");
+
     handleSubmit();
+    setError("");
     navigate("Users By Region", { regionID: region_id });
   };
 
@@ -106,7 +111,12 @@ const Form = ({ handleSubmit, status, userID = null, title }) => {
 
         <Spacer />
 
-        <Button onPress={onSubmit} text="Submit" />
+        <Button
+          onPress={onSubmit}
+          text="Submit"
+          disabled={status !== PENDING && status !== INPROGRESS}
+        />
+        {error !== "" && <Text style={{ color: "red" }}>Error: {error}</Text>}
       </View>
     </View>
   );

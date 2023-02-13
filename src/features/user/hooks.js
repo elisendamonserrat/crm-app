@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-
-import { PENDING, INPROGRESS } from "../../utilities/helpers";
 import * as actions from "./reducers";
 
 export const useListUsers = () => {
@@ -10,12 +7,19 @@ export const useListUsers = () => {
 };
 
 export const useListUsersStatus = () => {
-  return useSelector((state) => state.users.list.status);
+  const status = useSelector((state) => state.user.list.status);
+  const dispatch = useDispatch();
+  return {
+    status,
+    setStatus: (newStatus) => {
+      dispatch(actions.createUserResultStatus(newStatus));
+    },
+  };
 };
 
 export const useUpdateFields = (userID = null) => {
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.user.edit.status);
+  // const status = useSelector((state) => state.user.edit.status);
   let fields = useSelector((state) => state.user.form.fields);
 
   useEffect(() => {
@@ -51,15 +55,16 @@ export const useEditUserStatus = () => {
 
 export const useNewUser = () => {
   const dispatch = useDispatch();
-  const userDetails = useSelector((state) => state.user.form.fields);
-  const uuID = uuidv4();
-  const user = { ...userDetails, id: uuID };
 
   return {
     onSubmit: () => {
-      dispatch(actions.addNewUser(user));
+      dispatch(actions.createUser());
     },
   };
+};
+
+export const useNewUserStatus = () => {
+  return useSelector((state) => state.user.create.status);
 };
 
 export const useResetFormFields = () => {
@@ -69,4 +74,16 @@ export const useResetFormFields = () => {
       dispatch(actions.resetFields());
     },
   };
+};
+
+export const useErrorMessages = () => {
+  const dispatch = useDispatch();
+  const error = useSelector((state) => state.user.error.message);
+
+  return {
+    error,
+    setError: (message) => {
+      dispatch(actions.errorMessage(message))
+    }
+  }
 };

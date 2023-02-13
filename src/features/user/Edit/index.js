@@ -12,7 +12,7 @@ const Edit = () => {
     <Form
       title={"Edit User's Profile"}
       handleSubmit={onSubmit}
-      status={null}
+      status={status}
       userID={userID}
     />
   );
