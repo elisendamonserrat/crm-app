@@ -1,14 +1,12 @@
-import React, { useEffect, } from "react";
-import { Keyboard, View, Button, Text } from "react-native";
+import React, { useEffect } from "react";
+import { Keyboard, View } from "react-native";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
+import Title from "../../../components/Title/index.js";
+import Button from "../../../components/Button/index.js";
+import { useNavigation } from "@react-navigation/native";
 
-const usersToContatc = [
-  "John Doe",
-  "Mae Black",
-  "Max Well",
-  "Thom Bush",
-];
+const usersToContatc = ["John Doe", "Mae Black", "Max Well", "Thom Bush"];
 
 const onSubmit = (seconds) => {
   Keyboard.dismiss();
@@ -44,6 +42,8 @@ const askNotification = async () => {
 };
 
 const ContactUser = () => {
+  const { navigate } = useNavigation();
+
   useEffect(() => {
     askNotification();
 
@@ -52,11 +52,15 @@ const ContactUser = () => {
     return () => listener.remove();
   }, []);
 
+  const handleSubmit = () => {
+    onSubmit(5);
+    navigate("Welcome");
+  };
   return (
-    <View>
-      <Text>Press the button to notify of which user's you should contact</Text>
+    <View style={{ flex: 1 }}>
+      <Title text="Press the button to notify of which user's you should contact" />
 
-      <Button onPress={() => onSubmit(5)} title="Schedule" />
+      <Button onPress={handleSubmit} text="Schedule" />
     </View>
   );
 };
