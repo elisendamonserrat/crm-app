@@ -6,7 +6,10 @@ const stylesFn = () => {
       fontSize: 25,
       fontWeight: "bold",
       alignSelf: "center",
-      textAlign: "center"
+      textAlign: "center",
+      marginTop: 5,
+      marginBottom: 5,
+      color: "#191A19",
     },
   });
 };

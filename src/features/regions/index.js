@@ -17,24 +17,37 @@ const List = () => {
     <View>
       <Spacer />
 
-      <Title text="Add a New User" />
+      <View
+        style={{
+          backgroundColor: "#fff",
+          width: "90%",
+          margin: "auto",
+          paddingBottom: 15,
+          paddingTop: 15,
+          borderRadius: 14,
+        }}
+      >
+        <Title text="Add a New User" />
 
-      <Button
-        text="Add a New User"
-        onPress={() => navigate("Add User")}
-        disabled={false}
-      />
+        <Button
+          text="Add a New User"
+          onPress={() => navigate("Add User")}
+          disabled={false}
+        />
+      </View>
 
       <View
         style={{
-          borderBottomColor: "black",
-          borderBottomWidth: 1,
+          borderWidth: 1,
+          borderColor: "#191A19",
           marginTop: 15,
           marginBottom: 15,
+          width: "50%",
+          margin: "auto",
         }}
-      />
+      ></View>
 
-      <Title text="Regions List" />
+      <Title text="Search a User by Region" />
       <Spacer />
 
       {regionsList && regionsList.length > 0 ? (

@@ -1,14 +1,17 @@
 import React from "react";
-import { ScrollView, SafeAreaView } from "react-native";
+import { ScrollView, SafeAreaView, StyleSheet } from "react-native";
 import Regions from "../../../features/regions";
+import regionsStyles from "./styles";
 
-// top level display component only - declares a view that will be part of navigation
-const RegionsList = () => (
-  <SafeAreaView>
-    <ScrollView>
-      <Regions />
-    </ScrollView>
-  </SafeAreaView>
-);
+const RegionsList = () => {
+  const styles = StyleSheet.create(regionsStyles());
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <Regions />
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
 export default RegionsList;

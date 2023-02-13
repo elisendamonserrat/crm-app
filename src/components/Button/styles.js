@@ -5,26 +5,29 @@ const stylesFn = ({ disabled = false }) => {
   let color;
 
   if (disabled) {
-    backgroundColor = "grey";
-    color = "black";
+    backgroundColor = "#b9bbce";
+    color = "white";
   } else {
-    backgroundColor = "blue";
+    backgroundColor = "#443cf4";
     color = "white";
   }
 
   return StyleSheet.create({
     button: {
-      width: 200,
+      width: "70vw",
       borderRadius: 10,
       margin: 10,
       padding: 10,
       backgroundColor: backgroundColor,
       justifyContent: "center",
       alignItems: "center",
-      textTransform: "uppercase"
+      textTransform: "uppercase",
+      alignSelf: "center"
     },
     text: {
       color: color,
+      fontWeight: 600,
+      fontSize: 18,
     },
   });
 };

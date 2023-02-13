@@ -1,14 +1,18 @@
 import React from "react";
-import { ScrollView, SafeAreaView } from "react-native";
+import { ScrollView, SafeAreaView, StyleSheet } from "react-native";
 import List from "../../../features/user/List";
+import usersStyles from "./styles";
 
-// top level display component only - declares a view that will be part of navigation
-const ListUsersScreen = () => (
-  <SafeAreaView>
-    <ScrollView>
-      <List />
-    </ScrollView>
-  </SafeAreaView>
-);
+const ListUsersScreen = () => {
+  const styles = StyleSheet.create(usersStyles());
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <List />
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
 export default ListUsersScreen;

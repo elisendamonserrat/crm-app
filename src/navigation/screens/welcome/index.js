@@ -9,12 +9,10 @@ export default function Welcome() {
   const styles = StyleSheet.create(welcomeStyles());
   const { navigate } = useNavigation();
 
-  console.log('styles', styles)
-
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={styles.container} id="container">
+        <View style={styles.container}>
           <Spacer />
 
           <Title text="Welcome to the Customers Relations App" />

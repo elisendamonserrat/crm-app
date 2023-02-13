@@ -22,6 +22,7 @@ const List = () => {
 
   return (
     <View>
+      <Spacer />
       <Title text={`Users List ${selectedRegion.name}`} />
       <Spacer />
       {usersByRegion && usersByRegion.length > 0 ? (
