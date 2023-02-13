@@ -8,7 +8,9 @@ const ListUsersScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
         <List />
+      </ScrollView>
     </SafeAreaView>
   );
 };

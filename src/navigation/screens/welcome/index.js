@@ -10,8 +10,8 @@ export default function Welcome() {
   const { navigate } = useNavigation();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView>
+    <SafeAreaView >
+      <ScrollView >
         <View style={styles.container}>
           <Spacer />
 
