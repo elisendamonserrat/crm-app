@@ -1,5 +1,6 @@
 import { all, put, select, takeLatest, delay } from "redux-saga/effects";
 import * as actions from "../reducers";
+import { set } from "../../../utilities/async_storage";
 
 export function* watchEditUser() {
   yield takeLatest(actions.editUser.toString(), takeEditUser);
@@ -24,6 +25,8 @@ export function* takeEditUser(action) {
 
     // pretend call to API
     yield delay(500);
+    
+    yield set("USERS_LIST", result);
 
     yield put(actions.editUserResult(result));
   } catch (error) {

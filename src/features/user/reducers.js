@@ -97,6 +97,13 @@ const reducers = {
   errorMessage: (state, { payload }) => {
     state.error.message = payload;
   },
+  loadUsers: (state) => {
+    state.list.status = PENDING;
+  },
+  loadUsersResult: (state, { payload }) => {
+    state.list.users = payload;
+    state.list.status = SUCCESS;
+  },
 };
 
 const slice = createSlice({
@@ -118,6 +125,8 @@ export const {
   setFormField,
   resetFields,
   errorMessage,
+  loadUsers,
+  loadUsersResult,
 } = slice.actions;
 
 export default slice.reducer;

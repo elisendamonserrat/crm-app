@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "./reducers";
 
 export const useListUsers = () => {
-  return useSelector((state) => state.user.list.users);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(actions.loadUsers());
+  }, [dispatch])
+  
+  return useSelector(state => state.user.list.users)
 };
 
 export const useListUsersStatus = () => {

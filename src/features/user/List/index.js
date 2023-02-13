@@ -45,7 +45,9 @@ const List = () => {
         />
       ) : (
         <>
-          <Text>{"No users for this region available yet!"}</Text>
+          <Text style={{ textAlign: "center" }}>
+            {"No users for this region available yet!"}
+          </Text>
           <Button
             text="Add User"
             onPress={() => {

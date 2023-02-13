@@ -1,7 +1,7 @@
 import { all, put, select, takeLatest, delay } from "redux-saga/effects";
 import * as actions from "../reducers";
 import { v4 as uuidv4 } from "uuid";
-
+import { set } from "../../../utilities/async_storage";
 
 export function* watchAddUser() {
   yield takeLatest(actions.createUser.toString(), takeAddUser);
@@ -23,7 +23,7 @@ export function* takeAddUser() {
 
     const result = [user, ...users];
 
-    // yield set("UPDATE USERS LIST", result);
+    yield set("USERS_LIST", result);
 
     yield put(actions.createUserResult(result));
   } catch (error) {
